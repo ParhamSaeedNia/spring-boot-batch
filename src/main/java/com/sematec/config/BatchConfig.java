@@ -2,7 +2,6 @@ package com.sematec.config;
 
 import javax.sql.DataSource;
 
-import jdk.jfr.Registered;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
@@ -15,7 +14,8 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.task.VirtualThreadTaskExecutor;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -52,20 +52,24 @@ public class BatchConfig {
 
 	@Bean
 	public Job processJob() {
+		Flow splitFlow = new FlowBuilder<Flow>("splitFlow")
+				.start(flow1())
+				.split(asyncExecutor())
+				.add(flow2())
+				.build();
+		
 		return new JobBuilder("processJob", jobRepository)
 				.incrementer(new RunIdIncrementer())
 				.listener(listener())
-				.start(flow1())
-				.split(virtualThreadTaskExecutor())
-				.add(flow2())
+				.start(splitFlow)
 				.next(step4())
 				.end()
 				.build();
 	}
 
 	@Bean
-	public VirtualThreadTaskExecutor virtualThreadTaskExecutor() {
-		return new VirtualThreadTaskExecutor();
+	public TaskExecutor asyncExecutor() {
+		return new SimpleAsyncTaskExecutor("spring-batch");
 	}
 
 	@Bean
@@ -80,6 +84,13 @@ public class BatchConfig {
 	public Flow flow2() {
 		return new FlowBuilder<Flow>("flow2")
 				.start(step3())
+				.build();
+	}
+
+	@Bean
+	public Flow flow3() {
+		return new FlowBuilder<Flow>("flow3")
+				.start(step4())
 				.build();
 	}
 
