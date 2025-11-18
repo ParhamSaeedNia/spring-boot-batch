@@ -1,7 +1,7 @@
-C:\Users\belal\Desktop\Spring Cloud\spring cloud task-spring batch\springboot-batch\springboot-batch\springboot-batch\src\main\java\com\sematec\step\Writer.java
-C:\Users\belal\Desktop\Spring Cloud\spring cloud task-spring batch\springboot-batch\springboot-batch\springboot-batch\src\main\java\com\sematec\controller\JobInvokerController.java
-C:\Users\belal\Desktop\Spring Cloud\spring cloud task-spring batch\springboot-batch\springboot-batch\springboot-batch\src\main\java\com\sematec\listener\JobCompletionListener.java
-C:\Users\belal\Desktop\Spring Cloud\spring cloud task-spring batch\springboot-batch\springboot-batch\springboot-batch\src\main\java\com\sematec\SpringBatchApplication.java
-C:\Users\belal\Desktop\Spring Cloud\spring cloud task-spring batch\springboot-batch\springboot-batch\springboot-batch\src\main\java\com\sematec\step\Processor.java
-C:\Users\belal\Desktop\Spring Cloud\spring cloud task-spring batch\springboot-batch\springboot-batch\springboot-batch\src\main\java\com\sematec\step\Reader.java
-C:\Users\belal\Desktop\Spring Cloud\spring cloud task-spring batch\springboot-batch\springboot-batch\springboot-batch\src\main\java\com\sematec\config\BatchConfig.java
+/Users/mac/Desktop/java-projects/springboot-batch/src/main/java/com/sematec/step/Reader.java
+/Users/mac/Desktop/java-projects/springboot-batch/src/main/java/com/sematec/listener/JobCompletionListener.java
+/Users/mac/Desktop/java-projects/springboot-batch/src/main/java/com/sematec/step/Writer.java
+/Users/mac/Desktop/java-projects/springboot-batch/src/main/java/com/sematec/controller/JobInvokerController.java
+/Users/mac/Desktop/java-projects/springboot-batch/src/main/java/com/sematec/step/Processor.java
+/Users/mac/Desktop/java-projects/springboot-batch/src/main/java/com/sematec/config/BatchConfig.java
+/Users/mac/Desktop/java-projects/springboot-batch/src/main/java/com/sematec/SpringBatchApplication.java

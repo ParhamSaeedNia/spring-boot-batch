@@ -1,7 +1,7 @@
-com\sematec\step\Reader.class
-com\sematec\listener\JobCompletionListener.class
-com\sematec\controller\JobInvokerController.class
-com\sematec\step\Writer.class
-com\sematec\SpringBatchApplication.class
-com\sematec\step\Processor.class
-com\sematec\config\BatchConfig.class
+com/sematec/step/Processor.class
+com/sematec/controller/JobInvokerController.class
+com/sematec/listener/JobCompletionListener.class
+com/sematec/step/Writer.class
+com/sematec/config/BatchConfig.class
+com/sematec/SpringBatchApplication.class
+com/sematec/step/Reader.class
