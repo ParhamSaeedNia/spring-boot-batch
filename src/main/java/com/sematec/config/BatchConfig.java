@@ -2,6 +2,7 @@ package com.sematec.config;
 
 import javax.sql.DataSource;
 
+import jdk.jfr.Registered;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
@@ -11,7 +12,6 @@ import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -28,16 +28,19 @@ import com.sematec.step.Writer;
 @Configuration
 public class BatchConfig {
 
-	@Autowired
-	private JobRepository jobRepository;
+	private final JobRepository jobRepository;
 
-	@Autowired
-	private PlatformTransactionManager transactionManager;
+	private final PlatformTransactionManager transactionManager;
 
-	@Autowired
-	private DataSource dataSource;
+	private final  DataSource dataSource;
 
-	@Bean
+    public BatchConfig(JobRepository jobRepository, PlatformTransactionManager transactionManager, DataSource dataSource) {
+        this.jobRepository = jobRepository;
+        this.transactionManager = transactionManager;
+        this.dataSource = dataSource;
+    }
+
+    @Bean
 	public DataSourceInitializer dataSourceInitializer() {
 		DataSourceInitializer initializer = new DataSourceInitializer();
 		initializer.setDataSource(dataSource);
