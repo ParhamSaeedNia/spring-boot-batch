@@ -58,6 +58,7 @@ public class BatchConfig {
 				.start(flow1())
 				.split(virtualThreadTaskExecutor())
 				.add(flow2())
+				.next(step4())
 				.end()
 				.build();
 	}
@@ -105,6 +106,15 @@ public class BatchConfig {
 	@Bean
 	public Step step3() {
 		return new StepBuilder("step3", jobRepository)
+				.<String, String> chunk(1, transactionManager)
+				.reader(new Reader())
+				.processor(new Processor())
+				.writer(new Writer())
+				.build();
+	}
+	@Bean
+	public Step step4() {
+		return new StepBuilder("step4", jobRepository)
 				.<String, String> chunk(1, transactionManager)
 				.reader(new Reader())
 				.processor(new Processor())
